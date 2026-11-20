@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
-from Scout_tools import get_expense_value, combine_expenses, query_transactions
+from Scout_tools import get_expense_value, combine_expenses, query_transactions, calculate_profit
 from langchain_openai import OpenAIEmbeddings          # RAG: embeddings model
 from langchain_community.vectorstores import FAISS     # RAG: vector store
 
@@ -77,7 +77,7 @@ Identity consistency:
 
 agent = create_agent(
     model=MODEL,
-    tools=[get_expense_value, combine_expenses, query_transactions],  # list of tools the agent can use
+    tools=[get_expense_value, combine_expenses, query_transactions, calculate_profit],  # list of tools the agent can use
     system_prompt=SYSTEM_PROMPT
 )
 
