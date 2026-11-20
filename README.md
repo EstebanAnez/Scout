@@ -1,12 +1,10 @@
 <p align="center">
-  <img src="Images/the_keepsake_bow_v5.svg" alt="The Keepsake" width="160">
+  <img src="Images/banner.png" alt="Scout: AI business analyst">
 </p>
 
-<h1 align="center">Scout</h1>
+# Scout
 
-<p align="center">
-  An AI business analyst that answers plain English questions about an online retailer's sales, expenses and profit by writing its own SQL over 540,000 transactions.
-</p>
+An AI business analyst that answers plain English questions about an online retailer's sales, expenses and profit by writing its own SQL over 540,000 transactions.
 
 ---
 
