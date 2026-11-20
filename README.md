@@ -4,6 +4,8 @@
 
 # Scout
 
+[![tests](https://github.com/EstebanAnez/Scout/actions/workflows/tests.yml/badge.svg)](https://github.com/EstebanAnez/Scout/actions/workflows/tests.yml)
+
 An AI business analyst that answers plain English questions about an online retailer's sales, expenses and profit by writing its own SQL over 540,000 transactions.
 
 ---
@@ -36,7 +38,7 @@ Streamlit chat UI ──► LangChain agent (GPT-4o mini)
 
 | Tool | What it does |
 |---|---|
-| `query_transactions` | Writes and runs read only SQL `SELECT` queries on the transactions database |
+| `query_transactions` | Writes and runs SQL `SELECT` queries; anything else is refused, and the database is opened read only |
 | `get_expense_value` | Looks up expenses for one country |
 | `combine_expenses` | Adds up expenses for two countries |
 | `calculate_profit` | Computes profit from revenue and expenses with deterministic math |
@@ -73,6 +75,17 @@ Then start the app:
 streamlit run App.py
 ```
 
+## Tests
+
+The data tools are covered by unit tests that run on every push with GitHub Actions, no API key needed:
+
+```bash
+pip install pandas langchain pytest
+pytest -v
+```
+
+They check expense lookups, profit math, that write queries like `DELETE` and `DROP` are blocked, and that the database cannot be changed even if a query slips through.
+
 ## Project structure
 
 | File | Purpose |
@@ -81,6 +94,7 @@ streamlit run App.py
 | `Scout_step_5.py` | Agent setup, system prompt and RAG retrieval |
 | `Scout_tools.py` | SQL, expense and profit tools |
 | `tool_files/` | Transactions database and expenses file |
+| `tests/` | Unit tests for the tools |
 
 ---
 

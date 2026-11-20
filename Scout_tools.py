@@ -63,7 +63,8 @@ def query_transactions(sql_query: str):
     if not sql_query.strip().upper().startswith("SELECT"):
         return "Only SELECT queries are allowed."
 
-    conn = sqlite3.connect("tool_files/company.db")
+    # open the database read only, so even a bad query can never change the data
+    conn = sqlite3.connect("file:tool_files/company.db?mode=ro", uri=True)
     try:
         df = pd.read_sql_query(sql_query, conn)
         return df.to_string(index=False)
